@@ -13,7 +13,7 @@ describe('teste usuario', function ()
         $response = $this->laravel->post('/api/usuario',
             [
                 'nome' => 'Acassio Marques',
-                'cpf'  => '812.718.912-17',
+                'cpf'  => '812.718.912-11',
                 'data_nascimento' => '1989-08-20'
             ]);
 
