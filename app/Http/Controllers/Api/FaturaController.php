@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Usuario;
+use Acassio\Core\Models\Fatura;
 
-
-class UsuarioController extends Controller
+class FaturaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +15,10 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $user = Usuario::all()->toArray();
-        return response()->json($user);
+        $fatura = Fatura::all()->toArray();
+        return response()->json($fatura);
     }
-
+  
     /**
      * Store a newly created resource in storage.
      *
@@ -28,8 +27,8 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Usuario::create($request->all());
-        return response()->json($user->toArray());
+       $fatura = Fatura::create($request->all());
+        return response()->json($fatura->toArray());
     }
 
     /**
@@ -40,8 +39,8 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        $user = Usuario::findOrFail($id);
-        return response()->json($user->toArray());
+        $fatura = Fatura::findOrFail($id);
+        return response()->json($fatura->toArray());
     }
 
     /**
@@ -53,9 +52,9 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = Usuario::findOrFail($id);
-        $user->update($request->all());
-        return response()->json($user->toArray());
+        $fatura = Fatura::findOrFail($id);
+        $fatura->update($request->all());
+        return response()->json($fatura->toArray());
     }
 
     /**
@@ -66,7 +65,7 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        Usuario::findOrFail($id)->delete();
+        Fatura::findOrFail($id)->delete();
         return response()->json(['status' => 'Removido com sucesso'], 200);
     }
 }

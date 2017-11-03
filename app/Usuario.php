@@ -4,26 +4,18 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Acassio\Core\Models\Usuario as UsuarioCore;
 
-class Usuario extends Authenticatable
+class Usuario extends UsuarioCore
 {
-    use Notifiable;
-
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
+     protected $fillable = [
+        'id', 'nome', 'cpf', 'data_nascimento','total_faturas'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
 }

@@ -1,7 +1,7 @@
 <?php
 
 
-use Acassio\Core\Models\Usuario;
+use App\Usuario;
 use Acassio\Core\Models\Fatura;
 
 describe('teste usuario', function ()
@@ -15,17 +15,19 @@ describe('teste usuario', function ()
                 'nome' => 'Acassio Marques',
                 'cpf'  => '777.777.777-77',
                 'data_nascimento' => '1989-08-20',
-                'total_faturas'=>0
+                'total_faturas'=>2
             ]);
 
         $response->assertStatus(200)
-                 ->assertJson(['nome' => 'Acassio Marques']);
+                 ->assertJson(['cpf' => '777.777.777-77']);
     });
 
 
      it('ver usuario', function ()
     {
+
         $user = Usuario::where('nome','=','Acassio Marques')->first();
+
         $this->laravel->get('/api/usuario/'.$user->id)
             ->assertStatus(200)
             ->assertJson(['nome' => 'Acassio Marques']);
@@ -48,14 +50,12 @@ describe('teste usuario', function ()
      it('listar todos usuarios', function ()
     {
         $this->laravel->get('/api/usuario')
-            ->assertStatus(200)
-            ->assertJsonFragment(['nome' => 'Acassio Marques']);
+            ->assertStatus(200);
     });
 
 
      it('deletar usuario', function ()
-    {        
-
+    {  
         $user = Usuario::where('nome','=','Acassio Marques')->first();
         $this->laravel->delete('/api/usuario/'.$user->id)->assertStatus(200);
 
@@ -73,20 +73,65 @@ describe('teste fatura', function ()
         $user = Usuario::create([
             'nome' => 'Acassio Marques',
             'cpf' => '495.324.154-12',
-            'data_nascimento' => '1989-08-20'
+            'data_nascimento' => '1989-08-20',
+            'total_faturas'=>3
         ]);
 
         $response = $this->laravel->post('/api/fatura', [
             'usuario_id' => $user->id,
-            'nome_empresa' => 'Empresa de Teste',
+            'nome_empresa' => 'Tilix',
             'valor' => 100,
             'data_vencimento' => '2017-12-25',
-            'paid' => 0
+            'pagou' => 0
         ]);
 
         $response->assertStatus(200);
 
     });
+
+
+     it('ver fatura', function ()
+    {
+        $fatura = Fatura::first();
+        $this->laravel->get('/api/fatura/'.$fatura->id)
+            ->assertStatus(200);
+    });
+
+
+     it('editar fatura', function ()
+    {
+        $fatura = Fatura::first();
+        $response = $this->laravel->put('/api/fatura/'.$fatura->id , [
+            'data_vencimento'=>'2017-12-31',
+            'valor' => 50.5
+        ]);
+        $response->assertStatus(200)
+            ->assertJson(['data_vencimento' => '2017-12-31']);
+    });
+
+      it('ver todas faturas', function ()
+    {
+
+         $this->laravel->get('/api/fatura')
+                         ->assertStatus(200);        
+    });
+
+
+     it('deletar fatura', function ()
+    {
+
+        $fatura = Fatura::first();     
+        $user = Usuario::find($fatura->usuario_id);
+
+        $this->laravel->delete('/api/fatura/'.$fatura->id)
+                      ->assertStatus(200);        
+        $user->delete();                      
+    });
+
+
+
+
+
 
 
 });

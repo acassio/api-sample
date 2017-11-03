@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/acassio/core-sample.git",
-                "reference": "6ddacde3fb2524dbde9dfbc4470d43d16e3d80cf"
+                "reference": "2d980e93b52097afaaed3ec6f522c2dfa3d26c34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/acassio/core-sample/zipball/6ddacde3fb2524dbde9dfbc4470d43d16e3d80cf",
-                "reference": "6ddacde3fb2524dbde9dfbc4470d43d16e3d80cf",
+                "url": "https://api.github.com/repos/acassio/core-sample/zipball/2d980e93b52097afaaed3ec6f522c2dfa3d26c34",
+                "reference": "2d980e93b52097afaaed3ec6f522c2dfa3d26c34",
                 "shasum": ""
             },
             "require": {
@@ -50,7 +50,7 @@
                 "source": "https://github.com/acassio/core-sample/tree/master",
                 "issues": "https://github.com/acassio/core-sample/issues"
             },
-            "time": "2017-11-03T11:23:42+00:00"
+            "time": "2017-11-03T15:28:37+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
