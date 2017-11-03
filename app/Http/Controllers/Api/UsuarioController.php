@@ -67,7 +67,6 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         Usuario::findOrFail($id)->delete();
-        
-        return redirect('api/usuario');
+        return response()->json(['status' => 'Removido com sucesso'], 200);
     }
 }
